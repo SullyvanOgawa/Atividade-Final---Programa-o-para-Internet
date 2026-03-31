@@ -31,20 +31,20 @@ export default class Pessoa{
     }
 
     set id(novoId){
-        this.#id = id
+        this.#id = novoId
     }
     set cpf(novoCpf){
-        this.#cpf = cpf
+        this.#cpf = novoCpf
     }
 
     set nome(novoNome){
-        this.#nome = nome
+        this.#nome = novoNome
     }
     set telefone(novoTelefone){
-        this.#telefone = telefone
+        this.#telefone = novoTelefone
     }
     set email(novoEmail){
-        this.#email = email
+        this.#email = novoEmail
     }
 
     toString(){

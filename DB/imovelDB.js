@@ -4,7 +4,8 @@ import Imovel from "../Model/imovel.js";
 export default class ImovelDB{
     async gravar(imovel){
         if(imovel instanceof Imovel){
-            const sql = `INSERT INTO imovel(imo_id, imo_titulo, imo_tipo, imo_valor, pes_id)                        VALUES(?, ?, ?, ?, ?)`;
+            const sql = `INSERT INTO imovel(imo_id, imo_titulo, imo_tipo, imo_valor, pes_id)                        
+                                VALUES(?, ?, ?, ?, ?)`;
 
             const parametros = [
                 imovel.id, 

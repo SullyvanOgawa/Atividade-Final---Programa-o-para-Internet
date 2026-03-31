@@ -1,4 +1,4 @@
-import mysql2 from 'mysql2';
+import mysql2 from 'mysql2/promise';
 
 export default async function obterConexao(){
     if(global.poolConexoes){
@@ -9,7 +9,7 @@ export default async function obterConexao(){
         global.poolConexoes = mysql2.createPool({
             host: 'localhost',
             user: 'root',
-            database: 'atividade_finaldb', 
+            database: 'ativadade_finaldb', 
             waitForConnections: true,
             connectionLimit: 10,
             maxIdle: 10,
