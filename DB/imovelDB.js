@@ -1,4 +1,5 @@
 import obterConexao from "./conexao.js";
+import Pessoa from "../Model/pessoa.js";
 import Imovel from "../Model/imovel.js";
 
 export default class ImovelDB{
@@ -57,34 +58,40 @@ export default class ImovelDB{
         let parametros = [];
 
         if(!isNaN(Number(termoBusca) && Number(termoBusca) > 0)){
-            sql = `SELECT   imo_id, 
-                            imo_titulo, 
-                            imo_tipo, 
-                            imo_valor, 
-                            pes_id
-                    FROM imovel WHERE imo_id = ?`;            
+            sql = `SELECT * FROM imovel as imo 
+                            INNER JOIN pessoa as pes 
+                            ON imo.pes_id = pes.pes_id 
+                            WHERE imo_id = ?`;            
             
             parametros = [termoBusca];
         }
         else{
-            sql = `SELECT   imo_id, 
-                            imo_titulo, 
-                            imo_tipo, 
-                            imo_valor, 
-                            pes_id
-                    FROM imovel WHERE imo_titulo LIKE ?`;            
+            sql = `SELECT * FROM imovel imo
+                            INNER JOIN pessoa as pes
+                            on imo.pes_id = pes.pes_id
+                            WHERE imo_titulo LIKE ?`;            
             
             parametros = [`%${termoBusca}%`];
         }
 
         const conexao = await obterConexao();
-        const resultado = await conexao.query(sql, parametros);
+        const resultados = await conexao.query(sql, parametros);
         conexao.release();
 
         let listaImoveis = [];
 
-        for(const linha of resultado[0]){
-            const imovel = new Imovel(linha.imo_id, linha.imo_titulo, linha.imo_tipo, linha.imo_valor, linha.pes_id);
+        for(const resultado of resultados[0]){
+            const pessoa = new Pessoa(resultado.pes_id, 
+                                        resultado.pes_cpf, 
+                                        resultado.pes_nome, 
+                                        resultado.pes_telefone, 
+                                        resultado.pes_email);
+
+            const imovel = new Imovel(resultado.imo_id, 
+                                        resultado.imo_titulo, 
+                                        resultado.imo_tipo, 
+                                        resultado.imo_valor, 
+                                        pessoa);
             
             listaImoveis.push(imovel);
         }
