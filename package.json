@@ -1,0 +1,26 @@
+{
+  "name": "atividade-final---programa-o-para-internet",
+  "version": "1.0.0",
+  "description": "Desenvolver um sistema imobiliário capaz de vincular clientes a imóveis",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SullyvanOgawa/Atividade-Final---Programa-o-para-Internet.git"
+  },
+  "author": "Sullyvan Christyan do Nascimento Alves Ogawa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SullyvanOgawa/Atividade-Final---Programa-o-para-Internet/issues"
+  },
+  "homepage": "https://github.com/SullyvanOgawa/Atividade-Final---Programa-o-para-Internet#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mysql2": "^3.20.0"
+  }
+}
