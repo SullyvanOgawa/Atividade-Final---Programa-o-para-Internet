@@ -5,11 +5,9 @@ import Imovel from "../Model/imovel.js";
 export default class ImovelDB{
     async gravar(imovel){
         if(imovel instanceof Imovel){
-            const sql = `INSERT INTO imovel(imo_id, imo_titulo, imo_tipo, imo_valor, pes_id)                        
-                                VALUES(?, ?, ?, ?, ?)`;
+            const sql = `INSERT INTO imovel(imo_titulo, imo_tipo, imo_valor, pes_id)       VALUES(?, ?, ?, ?)`;
 
-            const parametros = [
-                imovel.id, 
+            const parametros = [ 
                 imovel.tituloImovel, 
                 imovel.imovelTipo, 
                 imovel.imovelValor, 
@@ -57,19 +55,37 @@ export default class ImovelDB{
         let sql = "";
         let parametros = [];
 
-        if(!isNaN(Number(termoBusca) && Number(termoBusca) > 0)){
-            sql = `SELECT * FROM imovel as imo 
-                            INNER JOIN pessoa as pes 
-                            ON imo.pes_id = pes.pes_id 
-                            WHERE imo_id = ?`;            
+        if(!isNaN(Number(termoBusca)) && Number(termoBusca) > 0){
+            sql = `SELECT   imo.imo_id, 
+                            imo.imo_titulo, 
+                            imo.imo_tipo, 
+                            imo.imo_valor, 
+                            pes.pes_id, 
+                            pes.pes_cpf, 
+                            pes.pes_nome, 
+                            pes.pes_telefone, 
+                            pes.pes_email 
+                    FROM imovel as imo 
+                    INNER JOIN pessoa as pes 
+                    ON imo.pes_id = pes.pes_id 
+                    WHERE imo_id = ?`;            
             
             parametros = [termoBusca];
         }
         else{
-            sql = `SELECT * FROM imovel imo
-                            INNER JOIN pessoa as pes
-                            on imo.pes_id = pes.pes_id
-                            WHERE imo_titulo LIKE ?`;            
+            sql = `SELECT   imo.imo_id, 
+                            imo.imo_titulo, 
+                            imo.imo_tipo, 
+                            imo.imo_valor, 
+                            pes.pes_id, 
+                            pes.pes_cpf, 
+                            pes.pes_nome, 
+                            pes.pes_telefone, 
+                            pes.pes_email 
+                    FROM imovel imo
+                    INNER JOIN pessoa as pes
+                    on imo.pes_id = pes.pes_id
+                    WHERE imo_titulo LIKE ?`;            
             
             parametros = [`%${termoBusca}%`];
         }

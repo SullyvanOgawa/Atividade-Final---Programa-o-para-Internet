@@ -1,6 +1,7 @@
 import ImovelDB from "../DB/imovelDB.js";
 
 
+
 export default class Imovel{
     #id;
     #tituloImovel;
@@ -39,24 +40,24 @@ export default class Imovel{
         return `${this.#tituloImovel} - ${this.#imovelTipo} - ${this.#imovelValor} - ${this.#pessoa}`;
     }
 
-    gravar(){
+   async gravar(){
         const imovelDB = new ImovelDB();
-        imovelDB.gravar(this);
+       await imovelDB.gravar(this);
     }
 
-    editar(){
+   async editar(){
         const imovelDB = new ImovelDB();
-        imovelDB.editar(this);
+       await imovelDB.editar(this);
     }
 
-    excluir(){
+   async excluir(){
         const imovelDB = new ImovelDB();
-        imovelDB.excluir(this);
+       await imovelDB.excluir(this);
     }
 
-    consultar(termoBusca){
+    async consultar(termoBusca){
         const imovelDB = new ImovelDB();
-        return imovelDB.consultar(termoBusca);
+        return await imovelDB.consultar(termoBusca);
     }
 
     toJSON(){

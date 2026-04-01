@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import rotaPessoas from './Routes/rotaPessoas.js';
+import rotaImovel from './Routes/rotaImovel.js';
 
 const localhost = '0.0.0.0';
 const porta = 3000;
@@ -11,5 +12,6 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use("/pessoa", rotaPessoas);
+app.use("/imovel", rotaImovel);
 
 app.listen(porta, localhost, () => console.log(`Servidor rodando em http://${localhost}:${porta}`));
