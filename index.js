@@ -8,7 +8,7 @@ const porta = 3000;
 const app = express();
 
 app.use(cors({
-    origin: `http://localhost:3000`
+    origin: `http://localhost:3001`
 }));
 app.use(express.json());
 app.use("/pessoa", rotaPessoas);
