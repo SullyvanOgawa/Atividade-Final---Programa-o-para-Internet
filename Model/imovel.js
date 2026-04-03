@@ -5,15 +5,15 @@ import ImovelDB from "../DB/imovelDB.js";
 export default class Imovel{
     #id;
     #tituloImovel;
-    #imovelTipo;
     #imovelValor;
     #pessoa;
-    constructor(id, tituloImovel, imovelTipo, imovelValor, pessoa){
+    #imovelTipo;
+    constructor(id, tituloImovel,imovelValor, pessoa, imovelTipo){
         this.#id = id;
         this.#tituloImovel = tituloImovel;
-        this.#imovelTipo = imovelTipo;
         this.#imovelValor = imovelValor;
         this.#pessoa = pessoa;
+        this.#imovelTipo = imovelTipo;
     }
 
     get id(){
@@ -64,9 +64,9 @@ export default class Imovel{
         return {
             id: this.#id,
             tituloImovel: this.#tituloImovel,
-            imovelTipo: this.#imovelTipo,
             imovelValor: this.#imovelValor,
-            pessoa: this.#pessoa
+            pessoa: this.#pessoa, 
+            imovelTipo: this.#imovelTipo
         }
     }
 

@@ -139,7 +139,7 @@ export default class PessoaCtrl{
                 resposta.status(200).json({
                     "status": true, 
                     "mensagem": "Segue abaixo a lista de Pessoas.", 
-                    "pessoa": listaPessoas
+                    "pessoas": listaPessoas
                 });
             })
             .catch(erro => {
