@@ -6,13 +6,16 @@ import Imovel from "../Model/imovel.js";
 export default class ImovelDB{
     async gravar(imovel){
         if(imovel instanceof Imovel){
-            const sql = `INSERT INTO imovel(imo_titulo, imo_valor, pes_id, tipo_id) VALUES(?, ?, ?, ?)`;
+            const sql = `INSERT INTO imovel(imo_titulo, 
+                                            imo_valor, 
+                                            pes_id, tipo_id) 
+                                VALUES(?, ?, ?, ?)`;
 
             const parametros = [ 
-                imovel.tituloImovel, 
-                imovel.imovelValor, 
+                imovel.titulo, 
+                imovel.valor, 
                 imovel.pessoa.id, 
-                imovel.tipoImovel.id
+                imovel.tipo.id
             ];
 
             const conexao = await obterConexao();
@@ -26,13 +29,17 @@ export default class ImovelDB{
 
     async editar(imovel){
         if(imovel instanceof Imovel){
-            const sql = `UPDATE imovel SET imo_titulo = ?, imo_valor = ?, pes_id = ?, tipo_id = ? WHERE imo_id = ?`;
+            const sql = `UPDATE imovel SET  imo_titulo = ?, 
+                                            imo_valor = ?, 
+                                            pes_id = ?, 
+                                            tipo_id = ? 
+                                        WHERE imo_id = ?`;
 
             const parametros = [
-                imovel.tituloImovel, 
-                imovel.valoImovel, 
+                imovel.titulo, 
+                imovel.valor, 
                 imovel.pessoa.id,
-                imovel.tipoImovel.id,
+                imovel.tipo.id,
                 imovel.id
             ];
 

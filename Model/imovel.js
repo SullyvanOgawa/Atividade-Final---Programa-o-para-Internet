@@ -1,43 +1,46 @@
 import ImovelDB from "../DB/imovelDB.js";
 
-
-
 export default class Imovel{
     #id;
-    #tituloImovel;
-    #imovelValor;
+    #titulo;
+    #valor;
     #pessoa;
-    #imovelTipo;
-    constructor(id, tituloImovel,imovelValor, pessoa, imovelTipo){
+    #tipo;
+
+    get id() {
+        return this.#id;
+    }
+
+    set id(novoId) {
+        this.#id = novoId;
+    }
+
+    get titulo() {
+        return this.#titulo;
+    }
+
+    get valor() {
+        return this.#valor;
+    }
+
+    get pessoa() {
+        return this.#pessoa;
+    }
+
+    get tipo() {
+        return this.#tipo;
+    }
+
+    constructor(id, titulo,valor, pessoa, tipo){
         this.#id = id;
-        this.#tituloImovel = tituloImovel;
-        this.#imovelValor = imovelValor;
+        this.#titulo = titulo;
+        this.#valor = valor;
         this.#pessoa = pessoa;
-        this.#imovelTipo = imovelTipo;
-    }
-
-    get id(){
-        return this.#id
-    }
-
-    get tituloImovel(){
-        return this.#tituloImovel
-    }
-
-    get imovelTipo(){
-        return this.#imovelTipo
-    }
-
-    get imovelValor(){
-        return this.#imovelValor
-    }
-
-    get pessoa(){
-        return this.#pessoa
+        this.#tipo = tipo;
     }
 
     toString(){
-        return `${this.#tituloImovel} - ${this.#imovelTipo} - ${this.#imovelValor} - ${this.#pessoa}`;
+        return `${this.#titulo} - ${this.#valor} - ${this.#pessoa} - ${this.#tipo}`;
     }
 
    async gravar(){
@@ -63,10 +66,10 @@ export default class Imovel{
     toJSON(){
         return {
             id: this.#id,
-            tituloImovel: this.#tituloImovel,
-            imovelValor: this.#imovelValor,
+            titulo: this.#titulo,
+            valor: this.#valor,
             pessoa: this.#pessoa, 
-            imovelTipo: this.#imovelTipo
+            tipo: this.#tipo
         }
     }
 

@@ -6,23 +6,22 @@ export default class ImovelCtrl{
 
     gravar(requisicao, resposta){
         if(requisicao.method === "POST" && requisicao.is("application/json")){
-            const tituloImovel = requisicao.body.tituloImovel;
-            const valorImovel = requisicao.body.valorImovel;
+            const titulo = requisicao.body.titulo;
+            const valor = requisicao.body.valor;
             const pessoa = requisicao.body.pessoa;
-            const tipoImovel = requisicao.body.tipoImovel;
+            const tipo = requisicao.body.tipo;
 
-            if(tituloImovel && tipoImovel && valorImovel && pessoa){
-                const tipoImovelOBJ = new TipoImovel(tipoImovel.id);
+            if(titulo && valor && pessoa && tipo){
+                const tipoImovelObj = new TipoImovel(tipo.id);
                 const pessoaObj = new Pessoa(pessoa.id);
-                const imovel = new Imovel(null, tituloImovel, valorImovel, pessoaObj, tipoImovelOBJ);
+                const imovel = new Imovel(null, titulo, valor, pessoaObj, tipoImovelObj);
 
                 imovel.gravar()
                 .then(() => {
                     resposta.status(201).json({
                         "status": true, 
                         "mensagem": "Imovel gravado com sucesso!", 
-                        "id": imovel.id, 
-                        "id":tipoImovel.id
+                        "id": imovel.id    
                     });
                 })
                 .catch(erro => {
@@ -51,15 +50,15 @@ export default class ImovelCtrl{
         if(requisicao.method === "PUT" || requisicao.method === "PATCH" && requisicao.is("application/json")){
             const id = requisicao.params.id;
 
-            const tituloImovel = requisicao.body.tituloImovel;
-            const valorImovel = requisicao.body.valorImovel;
+            const titulo = requisicao.body.titulo;
+            const valor = requisicao.body.valor;
             const pessoa = requisicao.body.pessoa;
-             const tipoImovel = requisicao.body.tipoImovel;
+            const tipo = requisicao.body.tipo;
 
-            if(id > 0 && tituloImovel && tipoImovel && valorImovel && pessoa){
+            if(id > 0 && titulo && valor && pessoa && tipo){
                 const pessoaObj = new Pessoa(pessoa.id);
-                const tipoImovelOBJ = new TipoImovel(tipoImovel.id);
-                const imovel = new Imovel(id, tituloImovel, valorImovel, pessoaObj, tipoImovelOBJ);
+                const tipoImovelObj = new TipoImovel(tipo.id);
+                const imovel = new Imovel(id, titulo, valor, pessoaObj, tipoImovelObj);
 
                 imovel.editar()
                 .then(() => {

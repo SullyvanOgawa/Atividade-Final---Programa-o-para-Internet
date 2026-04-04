@@ -18,22 +18,22 @@ export default class TipoImovel {
         return this.#descricao;
     }
 
+    toString() {
+        return `${this.#descricao}`; 
+    }
 
     async consultar(termoBusca){
         const tipoImovelDB = new TipoImovelDB();
         return await tipoImovelDB.consultar(termoBusca);
     }
 
-    toString() {
-        return `${this.#descricao}`; 
-    }
-
+   
     toJSON() {
         return {
             id: this.#id,
             descricao: this.#descricao,
            
-        };
+        }
     }
 
 }

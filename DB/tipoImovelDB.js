@@ -10,8 +10,8 @@ export default class TipoImovelDB {
         if(!isNaN(Number(termoBusca)) && Number(termoBusca) > 0){
             sql = `SELECT   tipo_id,
                             tipo_descricao   
-                        FROM tipoImovel 
-                        WHERE tipo_id = ?`;
+                    FROM tipoImovel 
+                    WHERE tipo_id = ?`;
             
             parametros = [termoBusca];
         }
