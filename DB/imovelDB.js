@@ -12,7 +12,7 @@ export default class ImovelDB{
                 imovel.tituloImovel, 
                 imovel.imovelValor, 
                 imovel.pessoa.id, 
-                imovel.tituloImovel.id
+                imovel.tipoImovel.id
             ];
 
             const conexao = await obterConexao();
@@ -30,7 +30,7 @@ export default class ImovelDB{
 
             const parametros = [
                 imovel.tituloImovel, 
-                imovel.imovelValor, 
+                imovel.valoImovel, 
                 imovel.pessoa.id,
                 imovel.tipoImovel.id,
                 imovel.id
@@ -71,7 +71,7 @@ export default class ImovelDB{
                     INNER JOIN pessoa as pes 
                     ON imo.pes_id = pes.pes_id
                     INNER JOIN tipoImovel as t
-                    ON imo.tipo_id = t.tip_id
+                    ON imo.tipo_id = t.tipo_id
                     WHERE imo.imo_id = ?`;            
             
             parametros = [termoBusca];
