@@ -7,15 +7,16 @@ export default class ImovelDB{
     async gravar(imovel){
         if(imovel instanceof Imovel){
             const sql = `INSERT INTO imovel(imo_titulo, 
-                                            imo_valor, 
-                                            pes_id, tipo_id) 
+                                            imo_valor,
+                                            tipo_id, 
+                                            pes_id) 
                                 VALUES(?, ?, ?, ?)`;
 
             const parametros = [ 
                 imovel.titulo, 
-                imovel.valor, 
-                imovel.pessoa.id, 
-                imovel.tipo.id
+                imovel.valor,  
+                imovel.tipo.id,
+                imovel.pessoa.id
             ];
 
             const conexao = await obterConexao();
@@ -31,15 +32,15 @@ export default class ImovelDB{
         if(imovel instanceof Imovel){
             const sql = `UPDATE imovel SET  imo_titulo = ?, 
                                             imo_valor = ?, 
-                                            pes_id = ?, 
-                                            tipo_id = ? 
+                                            tipo_id = ?,
+                                            pes_id = ? 
                                         WHERE imo_id = ?`;
 
             const parametros = [
                 imovel.titulo, 
                 imovel.valor, 
-                imovel.pessoa.id,
                 imovel.tipo.id,
+                imovel.pessoa.id,
                 imovel.id
             ];
 
@@ -75,9 +76,9 @@ export default class ImovelDB{
                             t.tipo_id, 
                             t.tipo_descricao
                     FROM imovel as imo 
-                    INNER JOIN pessoa as pes 
+                    LEFT JOIN pessoa as pes 
                     ON imo.pes_id = pes.pes_id
-                    INNER JOIN tipoImovel as t
+                    LEFT JOIN tipoImovel as t
                     ON imo.tipo_id = t.tipo_id
                     WHERE imo.imo_id = ?`;            
             
@@ -95,9 +96,9 @@ export default class ImovelDB{
                             t.tipo_id, 
                             t.tipo_descricao
                     FROM imovel imo
-                    INNER JOIN pessoa as pes
+                    LEFT JOIN pessoa as pes
                     on imo.pes_id = pes.pes_id
-                    INNER JOIN tipoImovel as t
+                    LEFT JOIN tipoImovel as t
                     on imo.tipo_id = t.tipo_id
                     WHERE imo_titulo LIKE ?`;            
             
@@ -122,8 +123,8 @@ export default class ImovelDB{
             const imovel = new Imovel(resultado.imo_id, 
                                         resultado.imo_titulo,  
                                         resultado.imo_valor, 
-                                        pessoa, 
-                                        tipoImovel);
+                                        tipoImovel, 
+                                        pessoa);
             
             listaImoveis.push(imovel);
         }

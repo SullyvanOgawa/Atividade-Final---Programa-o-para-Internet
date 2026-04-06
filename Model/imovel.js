@@ -4,8 +4,8 @@ export default class Imovel{
     #id;
     #titulo;
     #valor;
-    #pessoa;
     #tipo;
+    #pessoa;
 
     get id() {
         return this.#id;
@@ -31,16 +31,16 @@ export default class Imovel{
         return this.#tipo;
     }
 
-    constructor(id, titulo,valor, pessoa, tipo){
+    constructor(id, titulo,valor, tipo, pessoa){
         this.#id = id;
         this.#titulo = titulo;
         this.#valor = valor;
-        this.#pessoa = pessoa;
         this.#tipo = tipo;
+        this.#pessoa = pessoa;
     }
 
     toString(){
-        return `${this.#titulo} - ${this.#valor} - ${this.#pessoa} - ${this.#tipo}`;
+        return `${this.#titulo} - ${this.#valor}  - ${this.#tipo} - ${this.#pessoa}`;
     }
 
    async gravar(){
@@ -68,8 +68,8 @@ export default class Imovel{
             id: this.#id,
             titulo: this.#titulo,
             valor: this.#valor,
-            pessoa: this.#pessoa, 
-            tipo: this.#tipo
+            tipo: this.#tipo,
+            pessoa: this.#pessoa
         }
     }
 

@@ -8,13 +8,13 @@ export default class ImovelCtrl{
         if(requisicao.method === "POST" && requisicao.is("application/json")){
             const titulo = requisicao.body.titulo;
             const valor = requisicao.body.valor;
-            const pessoa = requisicao.body.pessoa;
             const tipo = requisicao.body.tipo;
+            const pessoa = requisicao.body.pessoa;
 
             if(titulo && valor && pessoa && tipo){
                 const tipoImovelObj = new TipoImovel(tipo.id);
                 const pessoaObj = new Pessoa(pessoa.id);
-                const imovel = new Imovel(null, titulo, valor, pessoaObj, tipoImovelObj);
+                const imovel = new Imovel(null, titulo, valor, tipoImovelObj, pessoaObj);
 
                 imovel.gravar()
                 .then(() => {
@@ -52,13 +52,13 @@ export default class ImovelCtrl{
 
             const titulo = requisicao.body.titulo;
             const valor = requisicao.body.valor;
-            const pessoa = requisicao.body.pessoa;
             const tipo = requisicao.body.tipo;
+            const pessoa = requisicao.body.pessoa;
 
-            if(id > 0 && titulo && valor && pessoa && tipo){
+            if(id > 0 && titulo && valor && tipo && pessoa){
                 const pessoaObj = new Pessoa(pessoa.id);
                 const tipoImovelObj = new TipoImovel(tipo.id);
-                const imovel = new Imovel(id, titulo, valor, pessoaObj, tipoImovelObj);
+                const imovel = new Imovel(id, titulo, valor, tipoImovelObj, pessoaObj);
 
                 imovel.editar()
                 .then(() => {
