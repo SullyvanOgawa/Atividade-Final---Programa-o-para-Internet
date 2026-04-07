@@ -69,8 +69,9 @@ export default class Imovel{
             titulo: this.#titulo,
             valor: this.#valor,
             tipo: this.#tipo,
-            pessoa: this.#pessoa
+           pessoa: this.#pessoa
         }
+        
     }
 
     
